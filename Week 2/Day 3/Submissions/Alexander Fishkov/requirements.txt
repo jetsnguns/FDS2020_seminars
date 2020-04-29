@@ -3,3 +3,9 @@ dask-ml
 dask-xgboost
 tables
 jupyter-server-proxy
+
+setuptools
+distributed
+joblib
+numpy
+pandas

@@ -11,8 +11,9 @@ from glob import glob
 def download_flights_data(url, download_dir, data_dir):
     """
     Download New York flights dataset
-    :param url: download link to the archive file
-    :param data_dir: path relative to the current working directory to download and extract dataset to
+    :param url: download link to the archive file.
+    :param download_dir: directory to download the file to.
+    :param data_dir: path relative to the current working directory to download and extract dataset to.
     :return: 
     """
     download_path = os.path.join(download_dir, 'nycflights.tar.gz')
@@ -42,9 +43,13 @@ def download_flights_data(url, download_dir, data_dir):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Download raw dataset and store it in a dedicated directory.')
-    parser.add_argument('-u', '--url', action="store", dest='url', type=str, required=True)
-    parser.add_argument('-d', '--download_dir', action="store", dest='download_dir', type=str, required=True)
-    parser.add_argument('-o', '--output_dir', action="store", dest='data_dir', type=str, required=True)
+    parser.add_argument('-u', '--url', action="store", dest='url', type=str, required=True,
+                        help="URL link to the file. A 'targ.gz' or 'tgz' file expected.")
+    parser.add_argument('-d', '--download_dir', action="store", dest='download_dir', type=str, required=True,
+                        help="Directory to download the file to.")
+    parser.add_argument('-o', '--output_dir', action="store", dest='data_dir', type=str, required=True,
+                        help="Directory to extract the contents of the archive. Note that there might be a nested "
+                             "structure in the tarball.")
 
     args = parser.parse_args()
 

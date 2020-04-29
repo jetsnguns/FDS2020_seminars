@@ -1,3 +1,4 @@
+# Directories and paths to intermediate objects
 DATA_URL="https://storage.googleapis.com/dask-tutorial-data/nycflights.tar.gz"
 DOWNLOAD_DIR=data
 DATA_DIR=data
@@ -6,10 +7,11 @@ PROCESSED_PATH=data/processed.hdf
 RESULTS_DIR=results
 TARGET_COL=ArrDelay
 
+# Configuration files
 TYPES_PATH=dtypes.json
 PREPROC_PATH=preprocess.json
-DESC1=rf.json
-DESC2=lr_a.json
+DESC1=rf.json # sklearn model
+DESC2=lr_a.json # dask model
 
 
 python download.py -u $DATA_URL -d $DOWNLOAD_DIR -o $DATA_DIR
