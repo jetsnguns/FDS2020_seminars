@@ -1,0 +1,14 @@
+{
+    "mode": "dask",
+    "algorithm_name": "dask_ml.linear_model.LogisticRegression",
+    "params_grid": {
+        "penalty": ["l1", "l2"],
+        "C": [0.01, 0.1, 0.5, 1.0],
+        "solver": ["gradient_descent"],
+        "fit_intercept": [false],
+        "solver_kwargs": [{"normalize": false}]
+    },
+    "num_folds": 3,
+    "test_size": 0.7,
+    "output_path": "lr_results.json"
+}

@@ -1,0 +1,10 @@
+{
+  "CRSElapsedTime": "float",
+  "Cancelled": "bool",
+  "Diverted": "bool",
+  "UniqueCarrier": "category",
+  "FlightNum": "category",
+  "TailNum": "category",
+  "Origin": "category",
+  "Dest": "category"
+}

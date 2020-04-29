@@ -1,0 +1,63 @@
+{
+  "preprocessors": [
+    {
+      "column": "Cancelled",
+      "name": "Filter",
+      "value": false
+    },
+    {
+      "column": "Diverted",
+      "name": "Filter",
+      "value": false
+    },
+    {
+      "column": "Distance",
+      "name": "FillMethod",
+      "method": "mean"
+    },
+    {
+      "column": "DepTime",
+      "name": "Drop"
+    },
+    {
+      "column": "ArrTime",
+      "name": "Drop"
+    },
+    {
+      "column": "DepDelay",
+      "name": "Drop"
+    },
+    {
+      "column": "AirTime",
+      "name": "Drop"
+    },
+    {
+      "column": "TaxiIn",
+      "name": "Drop"
+    },
+    {
+      "column": "TaxiOut",
+      "name": "Drop"
+    },
+    {
+      "column": "ActualElapsedTime",
+      "name": "Drop"
+    },
+    {
+      "column": "FlightNum",
+      "name": "Drop"
+    },
+    {
+      "column": "CRSDepTime",
+      "name": "CyclicHM"
+    },
+    {
+      "column": "CRSArrTime",
+      "name": "CyclicHM"
+    },
+    {
+      "column": "TailNum",
+      "name": "Drop"
+    }
+  ]
+}
