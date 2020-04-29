@@ -6,14 +6,14 @@ from importlib import import_module
 from dask_ml.model_selection import GridSearchCV
 import dask.dataframe as dd
 import joblib
+import pandas as pd
 
 from dask_ml.model_selection import train_test_split
 # from sklearn.model_selection import GridSearchCV as SkGridSearchCV
 
 
-# Hack for DaskML bug
+# Hack for DaskML bug: impossible to get best params without refit=True
 def _get_best_params_score(grigsearch):
-    import pandas as pd
     df_cv_res = pd.DataFrame(grigsearch.cv_results_)
     best_params = df_cv_res.loc[df_cv_res["rank_test_score"] == 1, "params"].iloc[0]
     mean_test_score = df_cv_res.loc[df_cv_res["rank_test_score"] == 1, "mean_test_score"].iloc[0]
@@ -24,7 +24,7 @@ def _get_best_params_score(grigsearch):
 class ExperimentRunner:
     """
     This class encapsulates data preparation and running the CV experiment.
-    Assumed to be run in presence of dask client (and possibally cluster)
+    Assumed to be run in presence of a dask client (and possibly a cluster)
     """
     def __init__(self, input_path, target_col, model_desc):
         self.input_path = input_path
@@ -95,6 +95,9 @@ class ExperimentRunner:
 
 
 class PersistExperimentRunner(ExperimentRunner):
+    """
+    Persist all data in memory for compatibility with some algorithms.
+    """
     def load_data(self):
         super().load_data()
         self.X = self.X.compute()
@@ -102,6 +105,9 @@ class PersistExperimentRunner(ExperimentRunner):
 
 
 class ArrayExperimentRunner(ExperimentRunner):
+    """
+    Convert data to dask arrays. Some dask ans sklearn algorithms do not support dask DataFrame.
+    """
     def load_data(self):
         super().load_data()
         self.X = self.X.to_dask_array(lengths=True)

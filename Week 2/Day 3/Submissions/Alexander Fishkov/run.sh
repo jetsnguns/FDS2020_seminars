@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Directories and paths to intermediate objects
 DATA_URL="https://storage.googleapis.com/dask-tutorial-data/nycflights.tar.gz"
 DOWNLOAD_DIR=data
@@ -8,13 +10,12 @@ RESULTS_DIR=results
 TARGET_COL=ArrDelay
 
 # Configuration files
-TYPES_PATH=dtypes.json
-PREPROC_PATH=preprocess.json
-DESC1=rf.json # sklearn model
-DESC2=lr_a.json # dask model
+TYPES_PATH=configs/dtypes.json
+PREPROC_PATH=configs/preprocess.json
+DESC1=configs/rf.json   # sklearn model
+DESC2=configs/lr_a.json # dask model
 
-
-python download.py -u $DATA_URL -d $DOWNLOAD_DIR -o $DATA_DIR
-python preprocess.py -i $RAW_DIR -t $TYPES_PATH -p $PREPROC_PATH -o $PROCESSED_PATH
-python train.py -i $PROCESSED_PATH -d $DESC1 -t $TARGET_COL -o $RESULTS_DIR
-python train.py -i $PROCESSED_PATH -d $DESC2 -t $TARGET_COL -o $RESULTS_DIR
+python scripts/download.py -u $DATA_URL -d $DOWNLOAD_DIR -o $DATA_DIR
+python scripts/preprocess.py -i $RAW_DIR -t $TYPES_PATH -p $PREPROC_PATH -o $PROCESSED_PATH
+python scripts/train.py -i $PROCESSED_PATH -d $DESC1 -t $TARGET_COL -o $RESULTS_DIR
+python scripts/train.py -i $PROCESSED_PATH -d $DESC2 -t $TARGET_COL -o $RESULTS_DIR
