@@ -67,9 +67,11 @@ class ExperimentRunner:
             gs.fit(self.X_train, self.y_train)
         finish_time = time.monotonic()
         gs_time = finish_time - start_time
+        print("Searching for marameters for [{}]".format(self.model_desc["algorithm_name"]))
         print("GridSearchCV time: {}".format(gs_time))
         cv_res, best_params, gs_score = _get_best_params_score(gs)
         print("GridSearchCV score: {}".format(gs_score))
+        print("Best params: {}".format(best_params))
 
         start_time = time.monotonic()
         regr_best = self._create_model(**best_params).fit(self.X_train, self.y_train)
@@ -79,7 +81,7 @@ class ExperimentRunner:
 
         test_score = float(regr_best.score(self.X_test, self.y_test))
 
-        print("test_score: {}".format(test_score))
+        print("Test score: {}".format(test_score))
 
         ans = {"algorithm_name": self.model_desc["algorithm_name"],
                "gs_time": gs_time,
