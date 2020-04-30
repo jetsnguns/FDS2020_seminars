@@ -24,7 +24,7 @@ def train(input_path, target_col, desc_path, output_path):
     with open(desc_path) as fp:
         desc = json.load(fp)
 
-    with LocalCluster(n_workers=4, threads_per_worker=5, host="192.168.1.32") as cluster:
+    with LocalCluster(n_workers=4, threads_per_worker=5) as cluster:
         print(cluster)
         with Client(cluster) as client:
             print(client)
